@@ -1,0 +1,40 @@
+function orderActions(records) {
+  const n = records.length;
+  const indices = Array.from({ length: n }, (_, i) => i);
+  
+  const isFiniteNum = r => typeof r.priority === 'number' && Number.isFinite(r.priority);
+  const isNull = r => r.priority === null;
+  const isString = r => typeof r.priority === 'string';
+  const isBool = r => typeof r.priority === 'boolean';
+  const isNonFiniteNum = r => typeof r.priority === 'number' && !Number.isFinite(r.priority);
+  
+  const getRank = r => {
+    if (isFiniteNum(r)) return 0;
+    if (isNull(r)) return 1;
+    if (isString(r)) return 2;
+    if (isBool(r)) return 3;
+    if (isNonFiniteNum(r)) return 4;
+    return 5; // missing or other types
+  };
+  
+  indices.sort((i, j) => {
+    const a = records[i];
+    const b = records[j];
+    const rankA = getRank(a);
+    const rankB = getRank(b);
+    
+    if (rankA !== rankB) return rankA - rankB;
+    
+    if (rankA === 0) {
+      const diff = a.priority - b.priority;
+      if (diff !== 0) return diff;
+      if (a.id < b.id) return -1;
+      if (a.id > b.id) return 1;
+      return 0;
+    }
+    
+    return 0;
+  });
+  
+  return indices.map(i => records[i]);
+}

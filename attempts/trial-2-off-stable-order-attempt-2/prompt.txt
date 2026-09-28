@@ -1,0 +1,45 @@
+SYNTHETIC_EFFORT_CONTROL: matched code proposal.
+ROLE: bounded pure JavaScript repair proposer. Only synthetic inputs. No tools/imports/IO/accounts/credentials/external actions. Broker owns files and actual tests. Never claim to have run checks.
+GOAL: Return a new sorted array: finite numeric priority ascending (including 0/negative), then ID by JavaScript code-unit comparison (< and >). Missing/null/string/nonfinite priority goes last. Same priority and ID retain input order. Do not mutate the array or records.
+PUBLIC CONTRACT EXAMPLES (nonfinite expected numbers use {$number: string} for JSON reporting):
+[{"args":[[{"id":"visible-k","priority":1.25},{"id":"visible-Z","priority":1.25},{"id":"visible-v","priority":-2},{"id":"visible-b","priority":0},{"id":"visible-h","priority":null},{"id":"visible-d","priority":"-20"},{"id":"visible-A"}]],"expected":[{"id":"visible-v","priority":-2},{"id":"visible-b","priority":0},{"id":"visible-Z","priority":1.25},{"id":"visible-k","priority":1.25},{"id":"visible-A"},{"id":"visible-d","priority":"-20"},{"id":"visible-h","priority":null}]},{"args":[[{"id":"visible-r","priority":false},{"id":"visible-B"},{"id":"visible-a","priority":null},{"id":"visible-e","priority":"2"}]],"expected":[{"id":"visible-B"},{"id":"visible-a","priority":null},{"id":"visible-e","priority":"2"},{"id":"visible-r","priority":false}]},{"args":[[{"id":"é","priority":8},{"id":"z","priority":8},{"id":"A","priority":8}]],"expected":[{"id":"A","priority":8},{"id":"z","priority":8},{"id":"é","priority":8}]},{"args":[[{"id":"repeat","priority":1,"title":"before"},{"id":"repeat","priority":1,"title":"after"}]],"expected":[{"id":"repeat","priority":1,"title":"before"},{"id":"repeat","priority":1,"title":"after"}]},{"args":[[{"id":"repeat","title":"first"},{"id":"repeat","priority":null,"title":"second"}]],"expected":[{"id":"repeat","title":"first"},{"id":"repeat","priority":null,"title":"second"}]},{"argsExpression":"[[{id:\"visible-t\",priority:Infinity},{id:\"visible-f\",priority:NaN},{id:\"visible-k\",priority:-Infinity},{id:\"visible-x\",priority:0.5}]]","expected":[{"id":"visible-x","priority":0.5},{"id":"visible-f","priority":{"$number":"NaN"}},{"id":"visible-k","priority":{"$number":"-Infinity"}},{"id":"visible-t","priority":{"$number":"Infinity"}}]},{"args":[[]],"expected":[]}]
+CURRENT SOURCE src/candidate.js:
+function orderActions(records) {
+  const n = records.length;
+  const indices = Array.from({ length: n }, (_, i) => i);
+  const isFiniteNum = r => typeof r.priority === 'number' && Number.isFinite(r.priority);
+  
+  indices.sort((i, j) => {
+    const a = records[i];
+    const b = records[j];
+    const aFin = isFiniteNum(a);
+    const bFin = isFiniteNum(b);
+    
+    if (aFin && bFin) {
+      const diff = a.priority - b.priority;
+      if (diff !== 0) return diff;
+      if (a.id < b.id) return -1;
+      if (a.id > b.id) return 1;
+      return 0;
+    }
+    
+    if (aFin) return -1;
+    if (bFin) return 1;
+    
+    return 0;
+  });
+  
+  return indices.map(i => records[i]);
+}
+
+ACTUAL PUBLIC CHECKPOINT REPORT:
+{"passed":false,"stage":"oracle","case":"stable-order","checks":12,"error_class":"AssertionError","failure_class":"public_check_rejected","public_failures":[{"test_index":0,"args":[[{"id":"visible-k","priority":1.25},{"id":"visible-Z","priority":1.25},{"id":"visible-v","priority":-2},{"id":"visible-b","priority":0},{"id":"visible-h","priority":null},{"id":"visible-d","priority":"-20"},{"id":"visible-A"}]],"expected":[{"id":"visible-v","priority":-2},{"id":"visible-b","priority":0},{"id":"visible-Z","priority":1.25},{"id":"visible-k","priority":1.25},{"id":"visible-A"},{"id":"visible-d","priority":"-20"},{"id":"visible-h","priority":null}],"actual":[{"id":"visible-v","priority":-2},{"id":"visible-b","priority":0},{"id":"visible-Z","priority":1.25},{"id":"visible-k","priority":1.25},{"id":"visible-h","priority":null},{"id":"visible-d","priority":"-20"},{"id":"visible-A"}],"unchanged_input":true,"returned_input_array":false},{"test_index":1,"args":[[{"id":"visible-r","priority":false},{"id":"visible-B"},{"id":"visible-a","priority":null},{"id":"visible-e","priority":"2"}]],"expected":[{"id":"visible-B"},{"id":"visible-a","priority":null},{"id":"visible-e","priority":"2"},{"id":"visible-r","priority":false}],"actual":[{"id":"visible-r","priority":false},{"id":"visible-B"},{"id":"visible-a","priority":null},{"id":"visible-e","priority":"2"}],"unchanged_input":true,"returned_input_array":false},{"test_index":5,"argsExpression":"[[{id:\"visible-t\",priority:Infinity},{id:\"visible-f\",priority:NaN},{id:\"visible-k\",priority:-Infinity},{id:\"visible-x\",priority:0.5}]]","expected":[{"id":"visible-x","priority":0.5},{"id":"visible-f","priority":{"$number":"NaN"}},{"id":"visible-k","priority":{"$number":"-Infinity"}},{"id":"visible-t","priority":{"$number":"Infinity"}}],"actual":[{"id":"visible-x","priority":0.5},{"id":"visible-t","priority":{"$number":"Infinity"}},{"id":"visible-f","priority":{"$number":"NaN"}},{"id":"visible-k","priority":{"$number":"-Infinity"}}],"unchanged_input":true,"returned_input_array":false}],"exit_code":2}
+ONE CHANGED REPAIR: last local attempt. Fix the public failures and review the complete contract. Hidden acceptance details are unavailable.
+OUTPUT FIRST LINE MUST BE EXACTLY src/candidate.js. Exactly one literal SEARCH/REPLACE block, no prose or fences; zero to two leading LF delimiters permitted. Exact unique source indentation in SEARCH. Keep public function orderActions. Pure functions only; no require/import/export/process/fetch/eval/Function/constructor/private access/timers/printing/DOM.
+src/candidate.js
+<<<<<<< SEARCH
+<exact unique old text>
+=======
+<replacement>
+>>>>>>> REPLACE
+Stop after the patch.

@@ -1,0 +1,467 @@
+{
+  "schema": "public-qwen-field-report.v1",
+  "campaign": "medium-reasoning-paired-v1",
+  "hardware": {
+    "machine": "M5 Pro Mac mini",
+    "unified_memory_gib": 64
+  },
+  "runtime": {
+    "bionic": "1.1.6+3",
+    "sdk": "1.5.0",
+    "lms_commit": "1017bcb",
+    "codex_cli": "0.158.0-alpha.2"
+  },
+  "model": {
+    "artifact": "lmstudio-community/Qwen3.8-27B-MLX-8bit",
+    "revision": "241ebb5f1d60b122fd653da658836a55feb9e2b0",
+    "architecture": "Qwen3_5ForConditionalGeneration",
+    "quantization": "affine 8-bit, group 64"
+  },
+  "settings": {
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0,
+    "repeat_penalty": 1,
+    "total_output_cap": 4096,
+    "requested_reasoning_budget": 1024,
+    "reasoning_budget_is_verified_hard_cap": false,
+    "coding_deadline_seconds": 480,
+    "reported_context": 131072,
+    "reported_parallel_capacity": 4,
+    "actual_dispatch_concurrency": 1,
+    "tools": [],
+    "skill_bodies": []
+  },
+  "profiles": {
+    "off": {
+      "first_attempts_started": 4,
+      "first_finals": 4,
+      "semantic_first_trials": 4,
+      "first_pass_accepted": 3,
+      "eventual_accepted": 3,
+      "settled_trials": 4,
+      "not_dispatched": 0,
+      "predictions": 5,
+      "repairs": 1,
+      "accepted_repairs": 0,
+      "delivery_failures": 0,
+      "settings_matched": 5,
+      "token_count_matched": 5,
+      "idle_proofs": 5,
+      "local_tokens": 5756,
+      "seconds": 171.266,
+      "screen_passed": false,
+      "stopped": false
+    },
+    "medium": {
+      "first_attempts_started": 4,
+      "first_finals": 4,
+      "semantic_first_trials": 4,
+      "first_pass_accepted": 4,
+      "eventual_accepted": 4,
+      "settled_trials": 4,
+      "not_dispatched": 0,
+      "predictions": 4,
+      "repairs": 0,
+      "accepted_repairs": 0,
+      "delivery_failures": 0,
+      "settings_matched": 4,
+      "token_count_matched": 4,
+      "idle_proofs": 4,
+      "local_tokens": 9679,
+      "seconds": 723.008,
+      "screen_passed": true,
+      "stopped": false
+    }
+  },
+  "complete_route_hosted_token_savings": "unknown",
+  "routine_route_qualified": false,
+  "attempts": [
+    {
+      "trial": 1,
+      "case": "stable-order",
+      "mode": "medium",
+      "repeat": 1,
+      "attempt": 1,
+      "status": "accepted",
+      "observed_at": "2026-09-27T04:42:09.041Z",
+      "packet_sha256": "ac3552122871dc1ea976f0502bbf71b09b2b21cfc191f3fb8eb54d7bced885a9",
+      "source_before_sha256": "189a13cad01355b56e5e32a164b568ed9acca1009935bb441b463eb53620df76",
+      "source_sha256": "b6460b896ad96a2b53162b9db29552b6b77df4b206b660a4203be04d288e65cc",
+      "seconds": 243.709,
+      "input_tokens": 811,
+      "generated_tokens": 2383,
+      "total_local_tokens": 3194,
+      "stop_reason": "eosFound",
+      "settings_matched": true,
+      "backend_idle": true,
+      "acceptance": {
+        "public_check": {
+          "passed": true,
+          "checks": 21,
+          "stage": "oracle"
+        },
+        "hidden_check": {
+          "passed": true,
+          "checks": 18,
+          "stage": "oracle"
+        },
+        "public_rerun": {
+          "passed": true,
+          "checks": 21,
+          "stage": "oracle"
+        },
+        "hidden_rerun": {
+          "passed": true,
+          "checks": 18,
+          "stage": "oracle"
+        }
+      },
+      "artifact_directory": "attempts/trial-1-medium-stable-order-attempt-1"
+    },
+    {
+      "trial": 2,
+      "case": "stable-order",
+      "mode": "off",
+      "repeat": 1,
+      "attempt": 1,
+      "status": "rejected",
+      "observed_at": "2026-09-27T04:46:13.077Z",
+      "packet_sha256": "ac3552122871dc1ea976f0502bbf71b09b2b21cfc191f3fb8eb54d7bced885a9",
+      "source_before_sha256": "189a13cad01355b56e5e32a164b568ed9acca1009935bb441b463eb53620df76",
+      "source_sha256": "2a07390d0cebcf582c10e904ae7113436f1baa049592ade92dc5839ace882adb",
+      "seconds": 30.228,
+      "input_tokens": 813,
+      "generated_tokens": 291,
+      "total_local_tokens": 1104,
+      "stop_reason": "eosFound",
+      "settings_matched": true,
+      "backend_idle": true,
+      "acceptance": {
+        "public_check": {
+          "passed": false,
+          "checks": 12,
+          "stage": "oracle"
+        },
+        "hidden_check": {
+          "passed": false,
+          "checks": 0,
+          "stage": "oracle"
+        },
+        "public_rerun": {
+          "passed": false,
+          "checks": 12,
+          "stage": "oracle"
+        },
+        "hidden_rerun": {
+          "passed": false,
+          "checks": 0,
+          "stage": "oracle"
+        }
+      },
+      "artifact_directory": "attempts/trial-2-off-stable-order-attempt-1"
+    },
+    {
+      "trial": 2,
+      "case": "stable-order",
+      "mode": "off",
+      "repeat": 1,
+      "attempt": 2,
+      "status": "rejected",
+      "observed_at": "2026-09-27T04:46:43.631Z",
+      "packet_sha256": "42880deb963c8cb6bc652df51e3a8e509af2b5a8557fdd2aa31993eaa7ed3c97",
+      "source_before_sha256": "2a07390d0cebcf582c10e904ae7113436f1baa049592ade92dc5839ace882adb",
+      "source_sha256": "e0329583ffdf48e9025b9559d8b1ce671445a424cc9161b72088878c580a5943",
+      "seconds": 66.171,
+      "input_tokens": 1574,
+      "generated_tokens": 609,
+      "total_local_tokens": 2183,
+      "stop_reason": "eosFound",
+      "settings_matched": true,
+      "backend_idle": true,
+      "acceptance": {
+        "public_check": {
+          "passed": false,
+          "checks": 9,
+          "stage": "oracle"
+        },
+        "hidden_check": {
+          "passed": false,
+          "checks": 0,
+          "stage": "oracle"
+        },
+        "public_rerun": {
+          "passed": false,
+          "checks": 9,
+          "stage": "oracle"
+        },
+        "hidden_rerun": {
+          "passed": false,
+          "checks": 0,
+          "stage": "oracle"
+        }
+      },
+      "artifact_directory": "attempts/trial-2-off-stable-order-attempt-2"
+    },
+    {
+      "trial": 3,
+      "case": "device-labels",
+      "mode": "off",
+      "repeat": 1,
+      "attempt": 1,
+      "status": "accepted",
+      "observed_at": "2026-09-27T04:47:50.114Z",
+      "packet_sha256": "072751d1b3c03afa8f6de25e3f3de132b7956c98287a6af0de4c7fd7e7c8e5a6",
+      "source_before_sha256": "003594e99f6db06476e81c765eeb624e3124005c0f6033f108dcad7680f93c2f",
+      "source_sha256": "5c1ae25cc47b2dafdd0a22c74ee13e4ff3e305b2902366280dbea9bc7cb624d7",
+      "seconds": 21.077,
+      "input_tokens": 472,
+      "generated_tokens": 193,
+      "total_local_tokens": 665,
+      "stop_reason": "eosFound",
+      "settings_matched": true,
+      "backend_idle": true,
+      "acceptance": {
+        "public_check": {
+          "passed": true,
+          "checks": 20,
+          "stage": "oracle"
+        },
+        "hidden_check": {
+          "passed": true,
+          "checks": 20,
+          "stage": "oracle"
+        },
+        "public_rerun": {
+          "passed": true,
+          "checks": 20,
+          "stage": "oracle"
+        },
+        "hidden_rerun": {
+          "passed": true,
+          "checks": 20,
+          "stage": "oracle"
+        }
+      },
+      "artifact_directory": "attempts/trial-3-off-device-labels-attempt-1"
+    },
+    {
+      "trial": 4,
+      "case": "device-labels",
+      "mode": "medium",
+      "repeat": 1,
+      "attempt": 1,
+      "status": "accepted",
+      "observed_at": "2026-09-27T04:48:11.504Z",
+      "packet_sha256": "072751d1b3c03afa8f6de25e3f3de132b7956c98287a6af0de4c7fd7e7c8e5a6",
+      "source_before_sha256": "003594e99f6db06476e81c765eeb624e3124005c0f6033f108dcad7680f93c2f",
+      "source_sha256": "21921e6bc4d98f8b8fa5b291d6ef4ada8cb02218656adb9132481a6d0c878016",
+      "seconds": 144.387,
+      "input_tokens": 470,
+      "generated_tokens": 1423,
+      "total_local_tokens": 1893,
+      "stop_reason": "eosFound",
+      "settings_matched": true,
+      "backend_idle": true,
+      "acceptance": {
+        "public_check": {
+          "passed": true,
+          "checks": 20,
+          "stage": "oracle"
+        },
+        "hidden_check": {
+          "passed": true,
+          "checks": 20,
+          "stage": "oracle"
+        },
+        "public_rerun": {
+          "passed": true,
+          "checks": 20,
+          "stage": "oracle"
+        },
+        "hidden_rerun": {
+          "passed": true,
+          "checks": 20,
+          "stage": "oracle"
+        }
+      },
+      "artifact_directory": "attempts/trial-4-medium-device-labels-attempt-1"
+    },
+    {
+      "trial": 5,
+      "case": "device-labels",
+      "mode": "medium",
+      "repeat": 2,
+      "attempt": 1,
+      "status": "accepted",
+      "observed_at": "2026-09-27T04:50:36.202Z",
+      "packet_sha256": "072751d1b3c03afa8f6de25e3f3de132b7956c98287a6af0de4c7fd7e7c8e5a6",
+      "source_before_sha256": "003594e99f6db06476e81c765eeb624e3124005c0f6033f108dcad7680f93c2f",
+      "source_sha256": "49fd6069243e2eb10f72795a8a15fd228575604eed3b826589eeaf429c00caa0",
+      "seconds": 119.511,
+      "input_tokens": 470,
+      "generated_tokens": 1179,
+      "total_local_tokens": 1649,
+      "stop_reason": "eosFound",
+      "settings_matched": true,
+      "backend_idle": true,
+      "acceptance": {
+        "public_check": {
+          "passed": true,
+          "checks": 20,
+          "stage": "oracle"
+        },
+        "hidden_check": {
+          "passed": true,
+          "checks": 20,
+          "stage": "oracle"
+        },
+        "public_rerun": {
+          "passed": true,
+          "checks": 20,
+          "stage": "oracle"
+        },
+        "hidden_rerun": {
+          "passed": true,
+          "checks": 20,
+          "stage": "oracle"
+        }
+      },
+      "artifact_directory": "attempts/trial-5-medium-device-labels-attempt-1"
+    },
+    {
+      "trial": 6,
+      "case": "device-labels",
+      "mode": "off",
+      "repeat": 2,
+      "attempt": 1,
+      "status": "accepted",
+      "observed_at": "2026-09-27T04:52:36.031Z",
+      "packet_sha256": "072751d1b3c03afa8f6de25e3f3de132b7956c98287a6af0de4c7fd7e7c8e5a6",
+      "source_before_sha256": "003594e99f6db06476e81c765eeb624e3124005c0f6033f108dcad7680f93c2f",
+      "source_sha256": "591241db2d55f4088dda543dd4996fed8a3430a721d6bfa5b1d179771d669519",
+      "seconds": 19.219,
+      "input_tokens": 472,
+      "generated_tokens": 181,
+      "total_local_tokens": 653,
+      "stop_reason": "eosFound",
+      "settings_matched": true,
+      "backend_idle": true,
+      "acceptance": {
+        "public_check": {
+          "passed": true,
+          "checks": 20,
+          "stage": "oracle"
+        },
+        "hidden_check": {
+          "passed": true,
+          "checks": 20,
+          "stage": "oracle"
+        },
+        "public_rerun": {
+          "passed": true,
+          "checks": 20,
+          "stage": "oracle"
+        },
+        "hidden_rerun": {
+          "passed": true,
+          "checks": 20,
+          "stage": "oracle"
+        }
+      },
+      "artifact_directory": "attempts/trial-6-off-device-labels-attempt-1"
+    },
+    {
+      "trial": 7,
+      "case": "stable-order",
+      "mode": "off",
+      "repeat": 2,
+      "attempt": 1,
+      "status": "accepted",
+      "observed_at": "2026-09-27T04:52:55.565Z",
+      "packet_sha256": "ac3552122871dc1ea976f0502bbf71b09b2b21cfc191f3fb8eb54d7bced885a9",
+      "source_before_sha256": "189a13cad01355b56e5e32a164b568ed9acca1009935bb441b463eb53620df76",
+      "source_sha256": "88c45ffc074ddb9ba5fa309bd4c1020648c567620623f6c6433111e92191adbe",
+      "seconds": 34.571,
+      "input_tokens": 813,
+      "generated_tokens": 338,
+      "total_local_tokens": 1151,
+      "stop_reason": "eosFound",
+      "settings_matched": true,
+      "backend_idle": true,
+      "acceptance": {
+        "public_check": {
+          "passed": true,
+          "checks": 21,
+          "stage": "oracle"
+        },
+        "hidden_check": {
+          "passed": true,
+          "checks": 18,
+          "stage": "oracle"
+        },
+        "public_rerun": {
+          "passed": true,
+          "checks": 21,
+          "stage": "oracle"
+        },
+        "hidden_rerun": {
+          "passed": true,
+          "checks": 18,
+          "stage": "oracle"
+        }
+      },
+      "artifact_directory": "attempts/trial-7-off-stable-order-attempt-1"
+    },
+    {
+      "trial": 8,
+      "case": "stable-order",
+      "mode": "medium",
+      "repeat": 2,
+      "attempt": 1,
+      "status": "accepted",
+      "observed_at": "2026-09-27T04:53:30.453Z",
+      "packet_sha256": "ac3552122871dc1ea976f0502bbf71b09b2b21cfc191f3fb8eb54d7bced885a9",
+      "source_before_sha256": "189a13cad01355b56e5e32a164b568ed9acca1009935bb441b463eb53620df76",
+      "source_sha256": "49da85823dc7573945f121c9598486e7f146c94eed5c5e8c06e27d9e6f729792",
+      "seconds": 215.401,
+      "input_tokens": 811,
+      "generated_tokens": 2132,
+      "total_local_tokens": 2943,
+      "stop_reason": "eosFound",
+      "settings_matched": true,
+      "backend_idle": true,
+      "acceptance": {
+        "public_check": {
+          "passed": true,
+          "checks": 21,
+          "stage": "oracle"
+        },
+        "hidden_check": {
+          "passed": true,
+          "checks": 18,
+          "stage": "oracle"
+        },
+        "public_rerun": {
+          "passed": true,
+          "checks": 21,
+          "stage": "oracle"
+        },
+        "hidden_rerun": {
+          "passed": true,
+          "checks": 18,
+          "stage": "oracle"
+        }
+      },
+      "artifact_directory": "attempts/trial-8-medium-stable-order-attempt-1"
+    }
+  ],
+  "limitations": [
+    "Two related synthetic families, two repeats per mode; no population reliability estimate.",
+    "Per-request rendered templates; no persistent default changed.",
+    "No tools or skill bodies tested.",
+    "Published diagnostic acceptance corpus is now public; use fresh held-out cases for subsequent qualification.",
+    "Replay reproduces recorded candidate acceptance, not fresh inference or the original OS isolation layer."
+  ]
+}

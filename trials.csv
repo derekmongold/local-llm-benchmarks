@@ -1,0 +1,10 @@
+trial,case,mode,repeat,attempt,status,seconds,input_tokens,generated_tokens,total_local_tokens,stop_reason,settings_matched,backend_idle,artifact_directory
+1,stable-order,medium,1,1,accepted,243.709,811,2383,3194,eosFound,True,True,attempts/trial-1-medium-stable-order-attempt-1
+2,stable-order,off,1,1,rejected,30.228,813,291,1104,eosFound,True,True,attempts/trial-2-off-stable-order-attempt-1
+2,stable-order,off,1,2,rejected,66.171,1574,609,2183,eosFound,True,True,attempts/trial-2-off-stable-order-attempt-2
+3,device-labels,off,1,1,accepted,21.077,472,193,665,eosFound,True,True,attempts/trial-3-off-device-labels-attempt-1
+4,device-labels,medium,1,1,accepted,144.387,470,1423,1893,eosFound,True,True,attempts/trial-4-medium-device-labels-attempt-1
+5,device-labels,medium,2,1,accepted,119.511,470,1179,1649,eosFound,True,True,attempts/trial-5-medium-device-labels-attempt-1
+6,device-labels,off,2,1,accepted,19.219,472,181,653,eosFound,True,True,attempts/trial-6-off-device-labels-attempt-1
+7,stable-order,off,2,1,accepted,34.571,813,338,1151,eosFound,True,True,attempts/trial-7-off-stable-order-attempt-1
+8,stable-order,medium,2,1,accepted,215.401,811,2132,2943,eosFound,True,True,attempts/trial-8-medium-stable-order-attempt-1

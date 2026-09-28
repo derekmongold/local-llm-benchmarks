@@ -1,0 +1,21 @@
+SYNTHETIC_EFFORT_CONTROL: matched code proposal.
+ROLE: bounded pure JavaScript repair proposer. Only synthetic inputs. No tools/imports/IO/accounts/credentials/external actions. Broker owns files and actual tests. Never claim to have run checks.
+GOAL: Return unique recognized device labels in fixed computer-then-phone order. computer only => ["Computer required"]. phone only => ["Phone possible"]. Both => ["Computer possible","Phone possible"]. Ignore unknown devices and duplicates. Non-array/empty => []. Do not mutate devices. This preserves the prototype label semantics while extracting a helper.
+PUBLIC CONTRACT EXAMPLES (nonfinite expected numbers use {$number: string} for JSON reporting):
+[{"args":[["computer"]],"expected":["Computer required"]},{"args":[["phone"]],"expected":["Phone possible"]},{"args":[["computer","phone"]],"expected":["Computer possible","Phone possible"]},{"args":[["phone","tablet","computer","phone"]],"expected":["Computer possible","Phone possible"]},{"args":[["computer","Computer","computer"]],"expected":["Computer required"]},{"args":[["tablet","Phone"]],"expected":[]},{"args":[[]],"expected":[]},{"args":[null],"expected":[]},{"args":["phone"],"expected":[]},{"args":[{}],"expected":[]}]
+CURRENT SOURCE src/candidate.js:
+function deviceLabels(devices) {
+  if (!Array.isArray(devices)) return [];
+  const flags = new Set(devices);
+  return [flags.has("phone") ? "Phone possible" : null, flags.has("computer") ? "Computer required" : null].filter(x => x !== null);
+}
+
+Implement the complete contract, not just the examples.
+OUTPUT FIRST LINE MUST BE EXACTLY src/candidate.js. Exactly one literal SEARCH/REPLACE block, no prose or fences; zero to two leading LF delimiters permitted. Exact unique source indentation in SEARCH. Keep public function deviceLabels. Pure functions only; no require/import/export/process/fetch/eval/Function/constructor/private access/timers/printing/DOM.
+src/candidate.js
+<<<<<<< SEARCH
+<exact unique old text>
+=======
+<replacement>
+>>>>>>> REPLACE
+Stop after the patch.

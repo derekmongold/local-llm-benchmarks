@@ -1,0 +1,20 @@
+SYNTHETIC_EFFORT_CONTROL: matched code proposal.
+ROLE: bounded pure JavaScript repair proposer. Only synthetic inputs. No tools/imports/IO/accounts/credentials/external actions. Broker owns files and actual tests. Never claim to have run checks.
+GOAL: Return a new sorted array: finite numeric priority ascending (including 0/negative), then ID by JavaScript code-unit comparison (< and >). Missing/null/string/nonfinite priority goes last. Same priority and ID retain input order. Do not mutate the array or records.
+PUBLIC CONTRACT EXAMPLES (nonfinite expected numbers use {$number: string} for JSON reporting):
+[{"args":[[{"id":"visible-k","priority":1.25},{"id":"visible-Z","priority":1.25},{"id":"visible-v","priority":-2},{"id":"visible-b","priority":0},{"id":"visible-h","priority":null},{"id":"visible-d","priority":"-20"},{"id":"visible-A"}]],"expected":[{"id":"visible-v","priority":-2},{"id":"visible-b","priority":0},{"id":"visible-Z","priority":1.25},{"id":"visible-k","priority":1.25},{"id":"visible-A"},{"id":"visible-d","priority":"-20"},{"id":"visible-h","priority":null}]},{"args":[[{"id":"visible-r","priority":false},{"id":"visible-B"},{"id":"visible-a","priority":null},{"id":"visible-e","priority":"2"}]],"expected":[{"id":"visible-B"},{"id":"visible-a","priority":null},{"id":"visible-e","priority":"2"},{"id":"visible-r","priority":false}]},{"args":[[{"id":"é","priority":8},{"id":"z","priority":8},{"id":"A","priority":8}]],"expected":[{"id":"A","priority":8},{"id":"z","priority":8},{"id":"é","priority":8}]},{"args":[[{"id":"repeat","priority":1,"title":"before"},{"id":"repeat","priority":1,"title":"after"}]],"expected":[{"id":"repeat","priority":1,"title":"before"},{"id":"repeat","priority":1,"title":"after"}]},{"args":[[{"id":"repeat","title":"first"},{"id":"repeat","priority":null,"title":"second"}]],"expected":[{"id":"repeat","title":"first"},{"id":"repeat","priority":null,"title":"second"}]},{"argsExpression":"[[{id:\"visible-t\",priority:Infinity},{id:\"visible-f\",priority:NaN},{id:\"visible-k\",priority:-Infinity},{id:\"visible-x\",priority:0.5}]]","expected":[{"id":"visible-x","priority":0.5},{"id":"visible-f","priority":{"$number":"NaN"}},{"id":"visible-k","priority":{"$number":"-Infinity"}},{"id":"visible-t","priority":{"$number":"Infinity"}}]},{"args":[[]],"expected":[]}]
+CURRENT SOURCE src/candidate.js:
+function orderActions(records) {
+  const priority = r => typeof r.priority === "number" && Number.isFinite(r.priority) ? r.priority : Infinity;
+  return records.slice().sort((a,b) => priority(a)-priority(b));
+}
+
+Implement the complete contract, not just the examples.
+OUTPUT FIRST LINE MUST BE EXACTLY src/candidate.js. Exactly one literal SEARCH/REPLACE block, no prose or fences; zero to two leading LF delimiters permitted. Exact unique source indentation in SEARCH. Keep public function orderActions. Pure functions only; no require/import/export/process/fetch/eval/Function/constructor/private access/timers/printing/DOM.
+src/candidate.js
+<<<<<<< SEARCH
+<exact unique old text>
+=======
+<replacement>
+>>>>>>> REPLACE
+Stop after the patch.
